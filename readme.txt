@@ -19,10 +19,15 @@
         |                              |
 Home  .... GameCenter         HomeP ... GameCenterP
 
-  b.观察BaseView模板
+  b.BaseView模板
     1.定义抽象方法让子类加载布局
     2.统一的ButterKnife绑定
     3.统一的Toolbar
     4.初始化一些逻辑，比如初始化状态栏，初始化变量，初始化数据，P绑定V，初始化注入等等
     5.将activity管理起来，用于退出时销毁
     6.实现BaseView的方法，完成相应的逻辑
+  c.Application模板
+    1.管理activity数据
+    2.单例模式
+    3.初始化一些逻辑，比如初始化网络组件，初始化SP，初始化调试信息，初始化Log等等
+  d.SplashActivity 界面
