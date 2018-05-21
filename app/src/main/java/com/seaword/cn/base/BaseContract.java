@@ -8,8 +8,8 @@ package com.seaword.cn.base;
 public interface BaseContract {
 
      interface BaseView {//负责显示数据、提供用户交互友好界面
-         void complete();//请求完成
-         void showError(String msg);//请求出错
+         void complete();//显示成功
+         void showError(String msg);//显示错误
      }
 
     interface BasePresenter<T> {//关系和那个View绑定
