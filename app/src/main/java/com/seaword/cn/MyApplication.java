@@ -7,6 +7,7 @@ import com.seaword.cn.di.component.AppComponent;
 import com.seaword.cn.di.component.DaggerAppComponent;
 import com.seaword.cn.di.module.ApiModule;
 import com.seaword.cn.di.module.AppModule;
+import com.seaword.cn.utils.AppUtils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -38,6 +39,7 @@ public class MyApplication extends Application {
         super.onCreate();
         myApplication = this;
         initComponent();
+        AppUtils.init(this);
     }
 
     /** 初始化网络模块组件 */

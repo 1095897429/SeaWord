@@ -13,15 +13,19 @@
   a.画图理解 --  T1可以理解为在每个界面中都需要有处理逻辑的P || T2理解为P要绑定界面的V
                    Basecontract
                         |
-        BaseView                  BasePresenter<T> -- 包含RetrofitHelper工厂类
-            |                         |
-    BaseActivity<T>                 RxPresenter<T>
-        |                              |
-Home  .... GameCenter         HomeP ... GameCenterP
+                     BaseView                             BasePresenter<T> -- 包含RetrofitHelper工厂类
+                |                 |                           |
+    BaseActivity<T>         BaseFragment<T>             RxPresenter<T>
+        |                        |                            |
+Home(P)  .... GameCenter       Home(P)....Live(P)                HomeP ... GameCenterP
+
+
+
+
 
   b.BaseView模板
     1.定义抽象方法让子类加载布局
-    2.统一的ButterKnife绑定
+    2.统一的ButterKnife绑定,可用Unbinder 绑定和解绑
     3.统一的Toolbar,通用的标题栏
     4.初始化一些逻辑，比如初始化状态栏，初始化变量，初始化数据，P绑定V，初始化注入等等
     5.将activity管理起来，用于退出时销毁
@@ -39,12 +43,19 @@ Home  .... GameCenter         HomeP ... GameCenterP
     4.引入P -- SplashPresenter，统一规定逻辑都放在P中
     5.引入Dragger -- Component + Module  -- Ctrl + F9 编译生成代码   (4)博客4 备注：3.Dragger2中有一个很小但很讨厌的缺陷，如果父组件和子组件共享相同的范围，编译器会报告完全误导的错误
          https://stackoverflow.com/questions/30260073/dagger-2-error-dependency-cannot-be-provided-without-an-inject-constructor-w
-    6.引入Retrofit -- (5)博客5
+    6.引入Retrofit -- 定义接口文件 -- (5)博客5 -- 拦截器
+
+  f.Main 界面
+    1.绘制界面
+    2.写BaseFragment
+    3.在Fragment中使用Toolbar
+    4.关于左侧的菜单一些操作，比如去掉滚动条，菜单项的点击事件
 
 
 
 
   小技巧：
     1.如何让包有层次显示 -- 找到项目中的设置图标，去掉 ”compact empty middle package“前面勾
-    2.GsonFormat --
+    2.GsonFormat -- AS中增加 -- Alt + S
+
 

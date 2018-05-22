@@ -14,8 +14,9 @@ import dagger.Component;
 
 /**
  * Created by zl on 2018/5/21.
+ * 需要在父类加上@Singleton
  */
-
+@Singleton
 @Component(modules = {AppModule.class,ApiModule.class})
 public interface AppComponent {
     Context getContext();
