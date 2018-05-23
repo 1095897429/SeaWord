@@ -4,7 +4,7 @@ import android.content.Context;
 
 /**
  * Created by zl on 2018/5/22.
- * APP工具类 -- 以全局的context
+ * APP工具类 -- 以全局的context为基准
  */
 
 public class AppUtils {
@@ -16,6 +16,10 @@ public class AppUtils {
 
     public static Context getmContext(){
         return mContext;
+    }
+
+    public static String[] getStringArray(int resId){
+        return mContext.getResources().getStringArray(resId);
     }
 
 }

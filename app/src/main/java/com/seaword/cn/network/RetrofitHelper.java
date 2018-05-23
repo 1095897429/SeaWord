@@ -1,7 +1,11 @@
 package com.seaword.cn.network;
 
 import com.seaword.cn.bean.app.Splash;
+import com.seaword.cn.bean.recommend.Recommend;
 import com.seaword.cn.network.api.AppService;
+import com.seaword.cn.network.response.HttpResponse;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 
@@ -20,5 +24,9 @@ public class RetrofitHelper {
   /** 提供方法，内部是不同的service对应的方法 */
   public Flowable<Splash> getSplash(){
       return mAppService.getSpalsh();
+  }
+
+  public Flowable<HttpResponse<List<Recommend>>> getRecommend(){
+      return mAppService.getRecommend();
   }
 }

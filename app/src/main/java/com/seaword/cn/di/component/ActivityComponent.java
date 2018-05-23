@@ -8,7 +8,7 @@ import dagger.Component;
 
 /**
  * Created by zl on 2018/5/21.
- * TODO 这个Scope还需什么理解一下
+ * TODO 定义ActivityScope
  */
 @ActivityScope
 @Component(dependencies = AppComponent.class, modules = ActivityModule.class)

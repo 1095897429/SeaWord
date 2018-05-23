@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -22,7 +24,7 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends RxFragment implements BaseContract.BaseView{
-
+    @Inject
     protected T mPresenter;
     protected boolean isVisible;  //标志位 fragment是否可见
     protected boolean isPrepared;// 标志位 标志已经控件初始化完成
@@ -112,6 +114,19 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
 
     /** 注入dagger2依赖 */
     protected void initInject() {}
+
+//    protected FragmentComponent getFragmentComponent() {
+//        return DaggerFragmentComponent.builder()
+//                .appComponent(MyApplication.getInstance().getAppComponent())
+//                .fragmentModule(getFragmentModule())
+//                .build();
+//    }
+//
+//    protected FragmentModule getFragmentModule() {
+//        return new FragmentModule(this);
+//    }
+
+
 
     /** 初始化Presenter，与对应的view绑定 */
     private void initPresenter() {

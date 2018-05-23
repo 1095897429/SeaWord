@@ -7,6 +7,7 @@ import io.reactivex.disposables.Disposable;
  * Created by zl on 2018/5/21.
  * 1.管理绑定
  * 2.防止内存溢出
+ * 3.T 泛型的View
  */
 
 public class RxPresenter<T extends BaseContract.BaseView> implements BaseContract.BasePresenter<T> {

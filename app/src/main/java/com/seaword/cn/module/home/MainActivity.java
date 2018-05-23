@@ -12,8 +12,12 @@ import android.view.MenuItem;
 
 import com.seaword.cn.R;
 import com.seaword.cn.base.BaseAcivity;
+import com.seaword.cn.event.Event;
 import com.socks.library.KLog;
 
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 
@@ -33,6 +37,35 @@ public class MainActivity extends BaseAcivity implements NavigationView.OnNaviga
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /** 接收StartNavigationEvent事件 */
+    @Subscribe
+    public void onStartNavigationEvent(Event.StartNavigationEvent event){
+        if(event.start){
+            toggleDrawer();//打开
+        }
+    }
+
+    /** DrawerLayout侧滑菜单开关 */
+    public void toggleDrawer() {
+        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        }else{
+            mDrawerLayout.openDrawer(GravityCompat.START);
+        }
     }
 
     /** 初始化主界面的Fragment  navigationview中的item点击事件*/
@@ -74,7 +107,6 @@ public class MainActivity extends BaseAcivity implements NavigationView.OnNaviga
         int id = item.getItemId();
         switch (id) {
             case R.id.item_vip:
-                KLog.d("item_vip");
                 break;
             case R.id.item_unicom:
 

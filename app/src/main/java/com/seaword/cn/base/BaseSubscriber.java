@@ -5,7 +5,7 @@ import io.reactivex.subscribers.ResourceSubscriber;
 /**
  * Created by zl on 2018/5/22.
  * T 代表要处理的数据泛型
- * 将P中的View传递进来，如果有问题，直接反馈给View,错误信息都在这里处理
+ * 返回后台整个json字符串中的整体为的泛型 -- Splash为例
  */
 
 public abstract class BaseSubscriber<T> extends ResourceSubscriber<T> {

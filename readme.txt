@@ -14,10 +14,13 @@
                    Basecontract
                         |
                      BaseView                             BasePresenter<T> -- 包含RetrofitHelper工厂类
-                |                 |                           |
-    BaseActivity<T>         BaseFragment<T>             RxPresenter<T>
-        |                        |                            |
-Home(P)  .... GameCenter       Home(P)....Live(P)                HomeP ... GameCenterP
+                |                 |                                    |
+    BaseActivity<T>         BaseFragment<T>                     RxPresenter<T>
+        |                         |       |                            |
+        |                         |    BaseRefreshFragment<T>刷新      |
+        |                         |       |                            |
+        |                         |      Recommend(P)                  |
+Home(P)  .... GameCenter    Home(P)....Live(P)                HomeP ... GameCenterP
 
 
 
@@ -50,6 +53,13 @@ Home(P)  .... GameCenter       Home(P)....Live(P)                HomeP ... GameC
     2.写BaseFragment
     3.在Fragment中使用Toolbar
     4.关于左侧的菜单一些操作，比如去掉滚动条，菜单项的点击事件
+    5.首次接触RxBus -- （6）博客6【eventbus 和 rxbus】 -- http://yydcdut.com/2016/03/07/eventbus3-code-analyse/
+
+  e.HomeFragment界面
+    1.viewpager + FragmentPagerAdapter + tablayout【最好用于有限个静态fragment页面的管理】 实现 滑动选项导航卡
+    2.统一处理HttpResponse,网络请求的基类
+    ....BaseMultiItemQuickAdapter实现多布局 -- (7)博客7
+
 
 
 

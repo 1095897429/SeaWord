@@ -1,18 +1,32 @@
 package com.seaword.cn.module.home;
 
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 
 import com.seaword.cn.R;
+import com.seaword.cn.adapter.home.MainAdapter;
+import com.seaword.cn.event.Event;
+
+import org.greenrobot.eventbus.EventBus;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by zl on 2018/5/22.
  */
 
 public class HomeFragment extends BaseHomeFragment {
-
+    @BindView(R.id.view_pager)
+    ViewPager mViewPager;
+    @BindView(R.id.tab)
+    TabLayout mTabLayout;
 
 
     /** 通过这种形式获取Fragment */
@@ -28,6 +42,17 @@ public class HomeFragment extends BaseHomeFragment {
     @Override
     public void initWidget() {
         super.initWidget();
+        initViewPager();
+    }
+
+
+    private void initViewPager() {
+        MainAdapter adapter = new MainAdapter(getChildFragmentManager());
+        mViewPager.setOffscreenPageLimit(5);//设置viewpager左右预加载页
+        mViewPager.setAdapter(adapter);
+        mViewPager.setCurrentItem(1);//设置viewpager的位置
+        //将tablayout和ViewPager关联起来
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
 
@@ -50,4 +75,15 @@ public class HomeFragment extends BaseHomeFragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /** 点击打开侧滑栏 */
+    @OnClick(R.id.ll_navigation)
+    void onClick(){
+        Event.StartNavigationEvent event = new Event.StartNavigationEvent();
+        event.start = true;
+        EventBus.getDefault().post(event);
+    }
+
+
+
 }
