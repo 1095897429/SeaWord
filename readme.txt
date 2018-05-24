@@ -58,7 +58,9 @@ Home(P)  .... GameCenter    Home(P)....Live(P)                HomeP ... GameCent
   e.HomeFragment界面
     1.viewpager + FragmentPagerAdapter + tablayout【最好用于有限个静态fragment页面的管理】 实现 滑动选项导航卡
     2.统一处理HttpResponse,网络请求的基类
-    ....BaseMultiItemQuickAdapter实现多布局 -- (7)博客7
+    3.BaseMultiItemQuickAdapter实现多布局 -- (7)博客7
+    4.BaseRefreshFragment中封装官方下拉刷新
+
 
 
 

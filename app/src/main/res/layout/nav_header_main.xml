@@ -12,7 +12,7 @@
 
     <com.seaword.cn.widget.CircleImageView
         android:id="@+id/ic_user"
-        android:src="@mipmap/ic_user_yoyiyi"
+        android:src="@mipmap/test"
         app:border_color="@color/white"
         android:layout_width="74dp"
         android:layout_height="74dp"/>
@@ -25,7 +25,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- 默认的gravity是bottom-->
         <LinearLayout
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
+import com.seaword.cn.R;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import javax.inject.Inject;
@@ -31,6 +34,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     protected Activity mActivity;
     protected View mRootView;
     private Unbinder mUnbinder;
+    public ConstraintLayout mError;
 
 
     /**
@@ -92,6 +96,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
         mUnbinder = ButterKnife.bind(this,view);
         initInject();
         initPresenter();
+        mError = ButterKnife.findById(mRootView, R.id.cl_error);
         initVariables();
         initWidget();
         finishCreateView();
@@ -146,13 +151,48 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
         lazyLoad();
     }
 
+    /** 初始化RV */
+    protected void initRecyclerView() {}
+
+    /** 重新构造新的数据后调用的方法，每个界面都有，都抽取到父类*/
+    protected void finishTask() {}
+
+
     @Override
     public void complete() {
-
+        if (mError != null && mError.getVisibility() == View.VISIBLE) {
+            gone(mError);
+        }
     }
 
+    /** 显示错误信息 */
     @Override
     public void showError(String msg) {
-
+        if(mError != null){
+            visible(mError);
+        }
     }
+
+    /** 显示View */
+    protected void visible(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
+    /** 隐藏View */
+    protected void gone(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
 }

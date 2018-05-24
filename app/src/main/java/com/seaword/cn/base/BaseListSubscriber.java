@@ -30,6 +30,7 @@ public abstract class BaseListSubscriber<T> extends ResourceSubscriber<HttpRespo
     /** 统一做处理，这里response就是返回的后台数据 */
     @Override
     public void onNext(HttpResponse<List<T>> response) {
+        mView.complete();
         if(response.code == 0){
             if(response.data != null)
                 onSuccess(response.data);

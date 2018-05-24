@@ -39,6 +39,8 @@
             android:layout_height="22dp"/>
     </RelativeLayout>
 
+    <include layout="@layout/common_layout_error"/>
+
     <FrameLayout
         android:layout_below="@id/rl_head"
         android:layout_width="match_parent"

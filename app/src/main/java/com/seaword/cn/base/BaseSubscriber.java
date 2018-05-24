@@ -1,5 +1,11 @@
 package com.seaword.cn.base;
 
+import com.google.gson.JsonSyntaxException;
+import com.socks.library.KLog;
+
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+
 import io.reactivex.subscribers.ResourceSubscriber;
 
 /**
@@ -19,12 +25,22 @@ public abstract class BaseSubscriber<T> extends ResourceSubscriber<T> {
 
     @Override
     public void onNext(T response) {
+        //获取到数据后，就调用view的方法来显示界面，比如将刷新的视图取消
+        mView.complete();
        onSuccess(response);
     }
 
+    //后台传输过来的异常 JsonSyntaxException
     @Override
-    public void onError(Throwable t) {
-
+    public void onError(Throwable throwable) {
+        KLog.d(throwable.getMessage());
+        if(mView == null)return;
+        mView.complete();//回调，让下拉的父类去取消等等
+        if( throwable instanceof JsonSyntaxException){
+            mView.showError("数据格式不正确，Json解析错误 ヽ(≧Д≦)ノ");
+        }else if(throwable instanceof SocketTimeoutException){
+            mView.showError("服务器响应超时ヽ(≧Д≦)ノ");
+        }
     }
 
     @Override

@@ -46,15 +46,16 @@ public class RecommendPresenter extends RxPresenter<RecommendContract.View> impl
 
     @Override
     public void getRecommendData() {
-//        BaseListSubscriber<Recommend> subscriber = mRetrofitHelper.getRecommend()
-//                .compose(RxUtils.<HttpResponse<List<Recommend>>>rxSchedulerHelper())
-//                .subscribeWith(new BaseListSubscriber<Recommend>(mView) {//这个Recomend是需要返回的类型
-//                    @Override
-//                    public void onSuccess(List<Recommend> recommends) {
-//                        mView.showRecommend(recommends);
-//                    }
-//                });
-//        addSubscribe(subscriber);
+        /** 2018.5.24 网络测试 -- 已没有tag字段*/
+        /*BaseListSubscriber<Recommend> subscriber = mRetrofitHelper.getRecommend()
+                .compose(RxUtils.<HttpResponse<List<Recommend>>>rxSchedulerHelper())
+                .subscribeWith(new BaseListSubscriber<Recommend>(mView) {//这个Recomend是需要返回的类型
+                    @Override
+                    public void onSuccess(List<Recommend> recommends) {
+                        mView.showRecommend(recommends);
+                    }
+                });
+        addSubscribe(subscriber);*/
 
 
         /** 本地测试 */
