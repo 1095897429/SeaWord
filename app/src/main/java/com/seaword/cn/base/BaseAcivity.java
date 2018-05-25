@@ -29,6 +29,7 @@ public  abstract class BaseAcivity<T extends BaseContract.BasePresenter> extends
         mContext = this;
         ButterKnife.bind(this);
         initStatusBar();
+        initInject();
         initPresenter();
         initVariables();
         initWidget();
@@ -46,16 +47,16 @@ public  abstract class BaseAcivity<T extends BaseContract.BasePresenter> extends
     }
 
     /** 初始化控件 */
-    protected void initWidget() {
-    }
+    protected void initWidget() {}
 
     /** 加载数据 */
-    protected void initDatas() {
-    }
+    protected void initDatas() {}
 
     /** 初始化变量*/
-    protected void initVariables() {
-    }
+    protected void initVariables() {}
+
+    /** 注入dagger2依赖 */
+    protected void initInject() {}
 
     /** P 绑定 V */
     private void initPresenter() {

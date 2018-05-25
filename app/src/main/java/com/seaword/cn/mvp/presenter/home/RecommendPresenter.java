@@ -1,22 +1,17 @@
-package com.seaword.cn.mvp.presenter.recommend;
+package com.seaword.cn.mvp.presenter.home;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.seaword.cn.base.BaseContract;
-import com.seaword.cn.base.BaseListSubscriber;
 import com.seaword.cn.base.BaseSubscriber;
 import com.seaword.cn.base.RxPresenter;
 import com.seaword.cn.bean.recommend.Recommend;
-import com.seaword.cn.mvp.contract.app.RecommendContract;
+import com.seaword.cn.mvp.contract.home.RecommendContract;
 import com.seaword.cn.network.RetrofitHelper;
-import com.seaword.cn.network.response.HttpResponse;
 import com.seaword.cn.rx.RxUtils;
 import com.seaword.cn.utils.JsonUtils;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -55,12 +55,14 @@ Home(P)  .... GameCenter    Home(P)....Live(P)                HomeP ... GameCent
     4.关于左侧的菜单一些操作，比如去掉滚动条，菜单项的点击事件
     5.首次接触RxBus -- （6）博客6【eventbus 和 rxbus】 -- http://yydcdut.com/2016/03/07/eventbus3-code-analyse/
 
-  e.HomeFragment界面
+  e.RecommendFragment界面
     1.viewpager + FragmentPagerAdapter + tablayout【最好用于有限个静态fragment页面的管理】 实现 滑动选项导航卡
     2.统一处理HttpResponse,网络请求的基类
     3.BaseMultiItemQuickAdapter实现多布局 -- (7)博客7
-    4.BaseRefreshFragment中封装官方下拉刷新
-
+    4.BaseRefreshFragment中封装官方下拉刷新的抽象类
+  f.LiveFragment界面
+    1.FlowableTransformer的作用
+    2.如何避免嵌套
 
 
 

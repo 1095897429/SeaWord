@@ -1,6 +1,7 @@
 package com.seaword.cn.adapter.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,6 +12,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.seaword.cn.R;
 import com.seaword.cn.bean.recommend.MulRecommend;
 import com.seaword.cn.bean.recommend.Recommend;
+import com.seaword.cn.module.app.video.VideoDetailActivity;
 import com.seaword.cn.utils.FormatUtils;
 import com.seaword.cn.utils.NumberUtils;
 import com.socks.library.KLog;
@@ -72,16 +74,16 @@ public class RecommendAdapter extends BaseMultiItemQuickAdapter<MulRecommend,Bas
                         .setText(R.id.tv_video_danmaku,NumberUtils.format(item.mRecommend.getDanmaku() + ""))//播放弹幕
                         .setText(R.id.tv_video_title,item.mRecommend.getTitle());//播放标题
                 if (item.mRecommend.getOpen() != 0) {
-                    //直播
+                    //直播 取area
                     helper.setText(R.id.tv_video_tag, item.mRecommend.getArea());//播放的标签
                 } else {
-                    //推荐
+                    //推荐 取tname
                     helper.setText(R.id.tv_video_tag, item.mRecommend.getTname());
                 }
                 helper.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        mContext.startActivity(new Intent(mContext, VideoDetailActivity.class));
                     }
                 });
                 break;

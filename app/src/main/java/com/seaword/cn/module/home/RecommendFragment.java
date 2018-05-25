@@ -11,8 +11,8 @@ import com.seaword.cn.bean.recommend.MulRecommend;
 import com.seaword.cn.bean.recommend.Recommend;
 import com.seaword.cn.di.component.DaggerFragmentComponent;
 import com.seaword.cn.di.module.FragmentModule;
-import com.seaword.cn.mvp.contract.app.RecommendContract;
-import com.seaword.cn.mvp.presenter.recommend.RecommendPresenter;
+import com.seaword.cn.mvp.contract.home.RecommendContract;
+import com.seaword.cn.mvp.presenter.home.RecommendPresenter;
 import com.seaword.cn.utils.EmptyUtils;
 
 

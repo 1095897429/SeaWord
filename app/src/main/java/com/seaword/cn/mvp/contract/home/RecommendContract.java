@@ -1,4 +1,4 @@
-package com.seaword.cn.mvp.contract.app;
+package com.seaword.cn.mvp.contract.home;
 
 import com.seaword.cn.base.BaseContract;
 import com.seaword.cn.bean.app.Splash;

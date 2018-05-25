@@ -6,5 +6,6 @@ package com.seaword.cn.network.support;
 
 public interface ApiConstants {
 
-    String APP_BASE_URL = "http://app.bilibili.com/";
+    String APP_BASE_URL = "http://app.bilibili.com/";//app通用url
+    String LIVE_BASE_URL = "http://api.live.bilibili.com";//直播url
 }

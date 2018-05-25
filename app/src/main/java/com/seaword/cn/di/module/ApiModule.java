@@ -4,8 +4,10 @@ import android.content.Context;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.seaword.cn.di.qualifier.AppUrl;
+import com.seaword.cn.di.qualifier.LiveUrl;
 import com.seaword.cn.network.RetrofitHelper;
 import com.seaword.cn.network.api.AppService;
+import com.seaword.cn.network.api.LiveService;
 import com.seaword.cn.network.helper.OkHttpHelper;
 import com.seaword.cn.network.support.ApiConstants;
 
@@ -36,8 +38,8 @@ public class ApiModule {
 
     @Singleton
     @Provides
-    RetrofitHelper provideRetrofitHelper(AppService appService) {
-        return new RetrofitHelper(appService);
+    RetrofitHelper provideRetrofitHelper(AppService appService, LiveService liveService) {
+        return new RetrofitHelper(appService,liveService);
     }
 
     /** 直接提供 */
@@ -58,6 +60,18 @@ public class ApiModule {
     @Provides
     AppService provideAppService(@AppUrl Retrofit retrofit){
         return retrofit.create(AppService.class);
+    }
+
+    /** live的retrofit */
+    @Provides
+    @LiveUrl
+    Retrofit provideLiveRetrofit(OkHttpClient client){
+        return createRetrofit(client,ApiConstants.LIVE_BASE_URL);
+    }
+
+    @Provides
+    LiveService provideLiveService(@LiveUrl Retrofit retrofit){
+        return retrofit.create(LiveService.class);
     }
 
 }
