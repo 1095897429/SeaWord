@@ -13,8 +13,8 @@ import butterknife.ButterKnife;
 
 /**
  * Created by zl on 2018/5/23.
- * 涉及控件 实体 -- 放在这里初始化
  * 涉及到Google接口 -- SwipeRefreshLayout.OnRefreshListener
+ * K 是某一项泛型的实体
  */
 
 public abstract class BaseRefreshFragment<T extends BaseContract.BasePresenter,K> extends BaseFragment<T> implements SwipeRefreshLayout.OnRefreshListener{

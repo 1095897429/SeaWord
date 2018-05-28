@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.seaword.cn.R;
+import com.seaword.cn.module.home.LiveFragment;
 import com.seaword.cn.module.home.RecommendFragment;
 import com.seaword.cn.utils.AppUtils;
 
@@ -35,7 +36,7 @@ public class MainAdapter extends FragmentPagerAdapter {
             switch (position) {
                 case 0:
                     //直播
-                    mFragments[position] = RecommendFragment.newInstance();
+                    mFragments[position] = LiveFragment.newInstance();
                     break;
                 case 1:
                     //推荐

@@ -20,4 +20,5 @@ public class AppModule {
     public Context provideContext() {
         return mContext;
     }
+
 }

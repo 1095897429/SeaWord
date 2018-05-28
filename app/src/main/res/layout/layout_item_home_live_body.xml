@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- cardElevation 设置z轴阴影  -->
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:orientation="vertical"
+                                    app:cardBackgroundColor="@color/card_view_background"
+                                    app:cardCornerRadius="4dp"
+                                    app:cardElevation="2dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/iv_video_preview"
+                android:scaleType="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="4dp"/>
+
+        <!-- ndroid:lineSpacingExtra这个属性是用来设置文字的行间距的 -->
+        <TextView
+            android:id="@+id/tv_video_title"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text="xxxx"
+            android:textColor="@color/font_normal"
+            android:textSize="14sp"/>
+
+        <RelativeLayout
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_video_live_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:drawablePadding="3dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="xxxx"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tv_video_online"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="3dp"
+                android:drawableLeft="@mipmap/ic_watching"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="xxxx"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="12sp"/>
+
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

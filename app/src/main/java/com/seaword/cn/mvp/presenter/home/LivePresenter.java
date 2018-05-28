@@ -33,6 +33,21 @@ public class LivePresenter extends RxPresenter<LiveContract.View> implements Liv
     @Override
     public void getLiveData() {
         /** 避免嵌套调用，用flatmap，并统一返回结果处理*/
-        mRetrofitHelper.getLivePartition().flatMap()
+       addSubscribe(mRetrofitHelper.getLivePartition()
+               .compose(RxUtils.<LivePartition>handleResult())
+               .flatMap(new Function<LivePartition, Publisher<HttpResponse<LiveRecommend>>>() {
+                   @Override
+                   public Publisher<HttpResponse<LiveRecommend>> apply(@NonNull LivePartition livePartition) throws Exception {
+                       mView.showLivePartition(livePartition);
+                       return mRetrofitHelper.getLiveRecommend();
+                   }
+               })
+               .compose(RxUtils.<HttpResponse<LiveRecommend>>rxSchedulerHelper())
+               .subscribeWith(new BaseObjectSubscriber<LiveRecommend>(mView) {
+                   @Override
+                   public void onSuccess(LiveRecommend liveRecommend) {
+                       mView.showLiveRecommend(liveRecommend);
+                   }
+               }));
     }
 }

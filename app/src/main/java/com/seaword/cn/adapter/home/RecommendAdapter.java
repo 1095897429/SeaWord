@@ -26,6 +26,7 @@ import java.util.List;
 
 /**
  * Created by zl on 2018/5/23.
+ * 1.继承BaseMultiItemQuickAdapter 需要让实体类实现MultiItemEntity接口
  */
 
 public class RecommendAdapter extends BaseMultiItemQuickAdapter<MulRecommend,BaseViewHolder>{
