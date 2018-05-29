@@ -3,7 +3,6 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
-
     <RelativeLayout
         android:id="@+id/cl_type_root"
         android:layout_width="match_parent"
@@ -35,18 +34,17 @@
             android:src="@mipmap/ic_gray_arrow_right"/>
 
         <TextView
-            android:id="@+id/tv_online"
+            android:id="@+id/tv_more"
             android:layout_marginRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:layout_centerVertical="true"
-            android:text="xxxx"
+            android:layout_centerVertical="true"
+            android:text="查看更多"
             android:textSize="12sp"
             android:layout_toLeftOf="@+id/iv_arrow"/>
 
 
 
     </RelativeLayout>
-
 
 </LinearLayout>

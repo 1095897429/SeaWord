@@ -2,8 +2,10 @@ package com.seaword.cn.base;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.seaword.cn.R;
+import com.seaword.cn.utils.AppUtils;
 import com.socks.library.KLog;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseRefreshFragment<T extends BaseContract.BasePresenter,K> extends BaseFragment<T> implements SwipeRefreshLayout.OnRefreshListener{
-    protected RecyclerView mRecycler;
+    protected RecyclerView mRecycler;//放在这里初始化
     protected SwipeRefreshLayout mRefresh;
     protected boolean mIsRefreshing = false;//是否手动的下拉刷新
     protected List<K> mList = new ArrayList<>();
@@ -30,6 +32,7 @@ public abstract class BaseRefreshFragment<T extends BaseContract.BasePresenter,K
     }
 
     /** 重新复写父类的方法，如果不调用super，就不会调用父类的，只会调用自己的 -- 截取父类的操作 -- 初始化找到控件 */
+    /** isPrepared = true 代表着视图已经准备好了*/
     @Override
     public void finishCreateView() {
         mRefresh = ButterKnife.findById(mRootView, R.id.refresh);
@@ -38,11 +41,13 @@ public abstract class BaseRefreshFragment<T extends BaseContract.BasePresenter,K
         lazyLoad();
     }
 
+    /** isPrepared = false 代表着下次切换进来不用再请求了*/
     @Override
     protected void lazyLoad() {
         if(!isVisible || !isPrepared) return;
         initRefreshLayout();
         initRecyclerView();
+        isPrepared = false;
     }
 
     protected  void initRefreshLayout(){
@@ -67,11 +72,12 @@ public abstract class BaseRefreshFragment<T extends BaseContract.BasePresenter,K
         if (mIsRefreshing) {
             if (mList != null) mList.clear();
             clear();
-            KLog.d("刷新成功");
+            Toast.makeText(AppUtils.getmContext(),"刷新成功",Toast.LENGTH_SHORT).show();
         }
         mIsRefreshing = false;
     }
 
+    /** 交个子类去处理数据 */
     protected void clear() {}
 
 

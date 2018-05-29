@@ -2,10 +2,13 @@ package com.seaword.cn.network;
 
 import com.seaword.cn.bean.app.Splash;
 import com.seaword.cn.bean.app.video.VideoDetail;
+import com.seaword.cn.bean.chase.ChaseBangumi;
+import com.seaword.cn.bean.chase.RecommendBangumi;
 import com.seaword.cn.bean.live.LivePartition;
 import com.seaword.cn.bean.live.LiveRecommend;
 import com.seaword.cn.bean.recommend.Recommend;
 import com.seaword.cn.network.api.AppService;
+import com.seaword.cn.network.api.BangumiService;
 import com.seaword.cn.network.api.LiveService;
 import com.seaword.cn.network.response.HttpResponse;
 
@@ -21,10 +24,12 @@ import io.reactivex.Flowable;
 public class RetrofitHelper {
     private AppService mAppService;
     private LiveService mLiveService;
+    private BangumiService mBangumiService;
 
-    public RetrofitHelper(AppService mAppService,LiveService mLiveService){
+    public RetrofitHelper(AppService mAppService,LiveService mLiveService,BangumiService mBangumiService){
         this.mAppService = mAppService;
         this.mLiveService = mLiveService;
+        this.mBangumiService = mBangumiService;
     }
 
   /** 提供方法，内部是不同的service对应的方法 */
@@ -43,6 +48,15 @@ public class RetrofitHelper {
 
   public Flowable<HttpResponse<LivePartition>> getLivePartition() {
         return mLiveService.getLivePartition();
+    }
+
+    /*******************************Bangumi****************************************/
+    public Flowable<HttpResponse<ChaseBangumi>> getChaseBangumi(){
+        return mBangumiService.getChaseBangumi();
+    }
+
+    public Flowable<HttpResponse<RecommendBangumi>> getRecommendBangumi(){
+        return mBangumiService.getRecommendBangumi();
     }
 
 

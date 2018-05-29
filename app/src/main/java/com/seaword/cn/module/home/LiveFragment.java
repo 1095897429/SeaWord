@@ -8,6 +8,7 @@ import com.seaword.cn.R;
 import com.seaword.cn.adapter.home.section.live.LiveBannerSection;
 import com.seaword.cn.adapter.home.section.live.LiveEntranceSection;
 import com.seaword.cn.adapter.home.section.live.LiveRecommendBannerSection;
+import com.seaword.cn.adapter.home.section.live.LiveRecommendPartitionSection;
 import com.seaword.cn.adapter.home.section.live.LiveRecommendSection;
 import com.seaword.cn.base.BaseRefreshFragment;
 import com.seaword.cn.bean.live.LivePartition;
@@ -23,14 +24,14 @@ import java.util.List;
 
 /**
  * Created by zl on 2018/5/25.
- *
+ * 过几秒刷新才有效果
  */
 
 public class LiveFragment extends BaseRefreshFragment<LivePresenter,LiveRecommend.RecommendDataBean.LivesBean> implements LiveContract.View{
 
     private SectionedRVAdapter mSectionedAdapter;//适配器
     private List<LivePartition.BannerBean> mBannerList = new ArrayList<>();//上面轮播条 -- 数据放在直播部分
-    private List<LivePartition.PartitionsBean> mPartitionsBeanList = new ArrayList<>();
+    private List<LivePartition.PartitionsBean> mPartitionsBeanList = new ArrayList<>();//直播部分
     private List<LiveRecommend.RecommendDataBean.BannerDataBean> mBannerRecommendList = new ArrayList<>();//推荐中的广告
     private LiveRecommend.RecommendDataBean.PartitionBean mPartitionBean;// 推荐中的头部相关信息
     private LivePartition mLivePartition;
@@ -85,12 +86,21 @@ public class LiveFragment extends BaseRefreshFragment<LivePresenter,LiveRecommen
     @Override
     public void showLivePartition(LivePartition livePartition) {
         mLivePartition = livePartition;//直播部分获取数据
-        mBannerList.addAll(mLivePartition.getBanner());
-        mPartitionsBeanList.addAll(mLivePartition.getPartitions());
+    }
+
+    @Override
+    protected void clear() {
+        mBannerRecommendList.clear();
+        mBannerList.clear();
+        mPartitionsBeanList.clear();
+        mSectionedAdapter.removeAllSections();
     }
 
     @Override
     public void showLiveRecommend(LiveRecommend liveRecommend) {
+        /** 以下两项放在这里，不然下拉刷新的时候获取不到数据 */
+        mBannerList.addAll(mLivePartition.getBanner());
+        mPartitionsBeanList.addAll(mLivePartition.getPartitions());
         mList.addAll(liveRecommend.getRecommend_data().getLives());//推荐部分获取数据
         mBannerRecommendList.addAll(liveRecommend.getRecommend_data().getBanner_data());
         mPartitionBean = liveRecommend.getRecommend_data().getPartition();
@@ -121,6 +131,13 @@ public class LiveFragment extends BaseRefreshFragment<LivePresenter,LiveRecommen
         }else{
             mSectionedAdapter.addSection(new LiveRecommendSection(true,true,mPartitionBean.getName(),
                     mPartitionBean.getSub_icon().getSrc(),mPartitionBean.getCount() + "",mList));
+        }
+
+        /** 循环的加入每一个Section */
+        for (LivePartition.PartitionsBean partitionsBean:mPartitionsBeanList) {
+            mSectionedAdapter.addSection(new LiveRecommendPartitionSection(partitionsBean.getPartition().getName(),
+                        partitionsBean.getPartition().getSub_icon().getSrc(),
+                        partitionsBean.getPartition().getCount() + "",partitionsBean.getLives().subList(0,4)));
         }
 
         mSectionedAdapter.notifyDataSetChanged();

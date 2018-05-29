@@ -10,7 +10,6 @@
                                     android:layout_height="wrap_content">
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -25,6 +24,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
+            <TextView
+                android:id="@+id/tv_video_follow"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_shadow_normal_reserve"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+
         </RelativeLayout>
 
         <Space
@@ -33,51 +42,42 @@
 
         <!-- ndroid:lineSpacingExtra这个属性是用来设置文字的行间距的 -->
         <TextView
-            android:id="@+id/tv_video_title"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_video_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:lineSpacingExtra="2dp"
-            android:maxLines="2"
-            android:minLines="2"
+            android:maxLines="1"
             android:text="xxxx"
             android:textColor="@color/font_normal"
             android:textSize="14sp"/>
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/tv_video_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_video_live_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:drawablePadding="3dp"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:lines="1"
-                android:text="xxxx"
-                android:textColor="@color/black_alpha_45"
-                android:textSize="12sp"/>
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="xxxx"
+            android:textColor="@color/black_alpha_60"
+            android:textSize="12sp"/>
 
-            <TextView
-                android:id="@+id/tv_video_online"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:drawablePadding="3dp"
-                android:drawableLeft="@mipmap/ic_watching"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="xxxx"
-                android:textColor="@color/black_alpha_45"
-                android:textSize="12sp"/>
-
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_video_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingLeft="4dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:text="xxxx"
+            android:textColor="@color/black_alpha_60"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 

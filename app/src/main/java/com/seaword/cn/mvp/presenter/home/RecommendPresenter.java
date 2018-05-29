@@ -5,11 +5,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.seaword.cn.base.BaseListSubscriber;
 import com.seaword.cn.base.BaseSubscriber;
 import com.seaword.cn.base.RxPresenter;
 import com.seaword.cn.bean.recommend.Recommend;
 import com.seaword.cn.mvp.contract.home.RecommendContract;
 import com.seaword.cn.network.RetrofitHelper;
+import com.seaword.cn.network.response.HttpResponse;
 import com.seaword.cn.rx.RxUtils;
 import com.seaword.cn.utils.JsonUtils;
 
@@ -42,19 +44,18 @@ public class RecommendPresenter extends RxPresenter<RecommendContract.View> impl
     @Override
     public void getRecommendData() {
         /** 2018.5.24 网络测试 -- 已没有tag字段*/
-        /*BaseListSubscriber<Recommend> subscriber = mRetrofitHelper.getRecommend()
+        addSubscribe(mRetrofitHelper.getRecommend()
                 .compose(RxUtils.<HttpResponse<List<Recommend>>>rxSchedulerHelper())
                 .subscribeWith(new BaseListSubscriber<Recommend>(mView) {//这个Recomend是需要返回的类型
                     @Override
                     public void onSuccess(List<Recommend> recommends) {
                         mView.showRecommend(recommends);
                     }
-                });
-        addSubscribe(subscriber);*/
+                }));
 
 
         /** 本地测试 */
-      BaseSubscriber<List<Recommend>>  subscriber =  Flowable.just(JsonUtils.readJson("recommend.json"))
+      /*addSubscribe(BaseSubscriber<List<Recommend>>  subscriber =  Flowable.just(JsonUtils.readJson("recommend.json"))
                 .map(new Function<String, List<Recommend>>() {
                     @Override
                     public List<Recommend> apply(@NonNull String s) throws Exception {
@@ -75,8 +76,7 @@ public class RecommendPresenter extends RxPresenter<RecommendContract.View> impl
                     public void onSuccess(List<Recommend> recommends) {
                         mView.showRecommend(recommends);
                     }
-                });
-        addSubscribe(subscriber);
+                }));*/
 
     }
 }

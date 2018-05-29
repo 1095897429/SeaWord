@@ -40,7 +40,7 @@
                         android:id="@+id/toolbar_user_avatar"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:src="@mipmap/test"
+                        android:src="@mipmap/ic_user_yoyiyi"
                         app:border_color="@color/white"
                         app:border_width="1dp"
                         android:layout_marginRight="3dp"

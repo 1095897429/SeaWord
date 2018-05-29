@@ -18,4 +18,7 @@
     <color name="refresh_pink_background">#fb7299</color>
     <color name="black_80">#222222</color>
     <color name="pink_text_color">#fb7299</color>
+    <color name="gray_alpha_80">#4fBEBBB4</color>
+    <color name="gray_light">#dcdcdc</color>
+    <color name="gray">#B8B8B8</color>
 </resources>

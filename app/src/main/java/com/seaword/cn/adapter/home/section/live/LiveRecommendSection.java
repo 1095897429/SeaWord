@@ -6,6 +6,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
@@ -80,7 +81,7 @@ public class LiveRecommendSection extends StatelessSection<LiveRecommend.Recomme
             holder.setText(R.id.tv_online, stringBuilder);
         }else{
             /** 如果没有头部，则让itemView的布局设置为隐藏 */
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(0, 0);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, 0);
             holder.itemView.setLayoutParams(params);
         }
 

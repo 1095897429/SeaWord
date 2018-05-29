@@ -4,9 +4,11 @@ import android.content.Context;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.seaword.cn.di.qualifier.AppUrl;
+import com.seaword.cn.di.qualifier.BangumiUrl;
 import com.seaword.cn.di.qualifier.LiveUrl;
 import com.seaword.cn.network.RetrofitHelper;
 import com.seaword.cn.network.api.AppService;
+import com.seaword.cn.network.api.BangumiService;
 import com.seaword.cn.network.api.LiveService;
 import com.seaword.cn.network.helper.OkHttpHelper;
 import com.seaword.cn.network.support.ApiConstants;
@@ -38,8 +40,8 @@ public class ApiModule {
 
     @Singleton
     @Provides
-    RetrofitHelper provideRetrofitHelper(AppService appService, LiveService liveService) {
-        return new RetrofitHelper(appService,liveService);
+    RetrofitHelper provideRetrofitHelper(AppService appService, LiveService liveService, BangumiService bangumiService) {
+        return new RetrofitHelper(appService,liveService,bangumiService);
     }
 
     /** 直接提供 */
@@ -74,4 +76,15 @@ public class ApiModule {
         return retrofit.create(LiveService.class);
     }
 
+    /** Bangumi 的retrofit */
+    @Provides
+    @BangumiUrl
+    Retrofit provideBangumiRetrofit(OkHttpClient client){
+        return createRetrofit(client,ApiConstants.BANGUMI_BASE_URL);
+    }
+
+    @Provides
+    BangumiService provideBangumiService(@BangumiUrl Retrofit retrofit){
+        return retrofit.create(BangumiService.class);
+    }
 }

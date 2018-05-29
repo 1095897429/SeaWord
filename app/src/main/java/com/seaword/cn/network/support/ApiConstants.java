@@ -8,4 +8,5 @@ public interface ApiConstants {
 
     String APP_BASE_URL = "http://app.bilibili.com/";//app通用url
     String LIVE_BASE_URL = "http://api.live.bilibili.com";//直播url
+    String BANGUMI_BASE_URL = "https://bangumi.bilibili.com/";//bangumi
 }

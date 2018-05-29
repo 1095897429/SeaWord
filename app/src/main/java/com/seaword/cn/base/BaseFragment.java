@@ -11,7 +11,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import com.seaword.cn.MyApplication;
 import com.seaword.cn.R;
+import com.seaword.cn.di.component.DaggerFragmentComponent;
+import com.seaword.cn.di.component.FragmentComponent;
+import com.seaword.cn.di.module.FragmentModule;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import javax.inject.Inject;
@@ -120,16 +124,16 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     /** 注入dagger2依赖 */
     protected void initInject() {}
 
-//    protected FragmentComponent getFragmentComponent() {
-//        return DaggerFragmentComponent.builder()
-//                .appComponent(MyApplication.getInstance().getAppComponent())
-//                .fragmentModule(getFragmentModule())
-//                .build();
-//    }
-//
-//    protected FragmentModule getFragmentModule() {
-//        return new FragmentModule(this);
-//    }
+    protected FragmentComponent getFragmentComponent() {
+        return DaggerFragmentComponent.builder()
+                .appComponent(MyApplication.getInstance().getAppComponent())
+                .fragmentModule(getFragmentModule())
+                .build();
+    }
+
+    protected FragmentModule getFragmentModule() {
+        return new FragmentModule(this);
+    }
 
 
 

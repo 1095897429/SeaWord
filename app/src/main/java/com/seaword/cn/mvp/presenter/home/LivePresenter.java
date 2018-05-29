@@ -23,6 +23,7 @@ import io.reactivex.functions.Function;
  */
 
 public class LivePresenter extends RxPresenter<LiveContract.View> implements LiveContract.Presenter<LiveContract.View>{
+
     RetrofitHelper mRetrofitHelper;
 
     @Inject

@@ -69,7 +69,7 @@ public class SplashActivity extends RxAppCompatActivity implements SplashContrac
     }
 
     private void initInject() {
-        /** 通过Dragger实例化P ,别忘了inject*/
+        /** 通过Dragger实例化P ,必须先实例AppComponent组件容器*/
         DaggerActivityComponent.builder().appComponent(MyApplication.getInstance().getAppComponent()).build().inject(this);
         mPresenter.attachView(this);
     }
