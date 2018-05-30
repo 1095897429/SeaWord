@@ -42,13 +42,16 @@ public class MainActivity extends BaseAcivity implements NavigationView.OnNaviga
     @Override
     protected void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+        if(!EventBus.getDefault().isRegistered(this)){//加上判断
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
     protected void onDestroy() {
+        if (EventBus.getDefault().isRegistered(this))//加上判断
+            EventBus.getDefault().unregister(this);
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 
     /** 接收StartNavigationEvent事件 */

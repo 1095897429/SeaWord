@@ -7,6 +7,7 @@ import com.seaword.cn.bean.chase.RecommendBangumi;
 import com.seaword.cn.bean.live.LivePartition;
 import com.seaword.cn.bean.live.LiveRecommend;
 import com.seaword.cn.bean.recommend.Recommend;
+import com.seaword.cn.bean.region.Region;
 import com.seaword.cn.network.api.AppService;
 import com.seaword.cn.network.api.BangumiService;
 import com.seaword.cn.network.api.LiveService;
@@ -59,5 +60,9 @@ public class RetrofitHelper {
         return mBangumiService.getRecommendBangumi();
     }
 
+    /*******************************Region****************************************/
+    public Flowable<HttpResponse<List<Region>>> getRegion(){
+        return mAppService.getRegion();
+    }
 
 }

@@ -9,6 +9,7 @@ import com.seaword.cn.bean.chase.ChaseBangumi;
 import com.seaword.cn.module.home.ChaseBangumiFragment;
 import com.seaword.cn.module.home.LiveFragment;
 import com.seaword.cn.module.home.RecommendFragment;
+import com.seaword.cn.module.home.RegionFragment;
 import com.seaword.cn.utils.AppUtils;
 
 /**
@@ -50,7 +51,7 @@ public class MainAdapter extends FragmentPagerAdapter {
                     break;
                 case 3:
                     //分区
-                    mFragments[position] = RecommendFragment.newInstance();
+                    mFragments[position] = RegionFragment.newInstance();
                     break;
                 case 4:
                     //动态

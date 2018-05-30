@@ -41,6 +41,7 @@ public abstract class BaseRefreshFragment<T extends BaseContract.BasePresenter,K
         lazyLoad();
     }
 
+    //TODO 这里注入成功了，有情况会请求不到数据，可能是没有加入SwipeRefreshLayout布局
     /** isPrepared = false 代表着下次切换进来不用再请求了*/
     @Override
     protected void lazyLoad() {

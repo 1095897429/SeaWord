@@ -2,6 +2,7 @@ package com.seaword.cn.di.component;
 
 import android.app.Activity;
 
+import com.seaword.cn.bean.region.Region;
 import com.seaword.cn.di.module.ActivityModule;
 import com.seaword.cn.di.module.FragmentModule;
 import com.seaword.cn.di.scope.ActivityScope;
@@ -10,6 +11,7 @@ import com.seaword.cn.module.app.SplashActivity;
 import com.seaword.cn.module.home.ChaseBangumiFragment;
 import com.seaword.cn.module.home.LiveFragment;
 import com.seaword.cn.module.home.RecommendFragment;
+import com.seaword.cn.module.home.RegionFragment;
 
 import dagger.Component;
 
@@ -24,4 +26,5 @@ public interface FragmentComponent {
     void inject(RecommendFragment recommendFragment);
     void inject(LiveFragment liveFragment);
     void inject(ChaseBangumiFragment chaseBangumiFragment);
+    void inject(RegionFragment regionFragment);
 }

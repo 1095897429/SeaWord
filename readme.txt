@@ -63,6 +63,8 @@ Home(P)  .... GameCenter    Home(P)....Live(P)                HomeP ... GameCent
   f.LiveFragment界面
     1.FlowableTransformer的作用
     2.如何避免嵌套
+  e.Region界面
+    1."data": [] -- 构建数据返回的时候利用List<Region>
 
 
 
