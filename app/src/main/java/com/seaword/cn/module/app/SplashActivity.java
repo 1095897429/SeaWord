@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.seaword.cn.di.module.ActivityModule;
 import com.seaword.cn.module.home.MainActivity;
 import com.seaword.cn.MyApplication;
 import com.seaword.cn.R;
@@ -70,7 +71,12 @@ public class SplashActivity extends RxAppCompatActivity implements SplashContrac
 
     private void initInject() {
         /** 通过Dragger实例化P ,必须先实例AppComponent组件容器*/
-        DaggerActivityComponent.builder().appComponent(MyApplication.getInstance().getAppComponent()).build().inject(this);
+        DaggerActivityComponent
+                .builder()
+                .appComponent(MyApplication.getInstance().getAppComponent())
+                .activityModule(new ActivityModule(this))
+                .build()
+                .inject(this);
         mPresenter.attachView(this);
     }
 

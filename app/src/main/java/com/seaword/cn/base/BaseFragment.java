@@ -155,7 +155,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
         lazyLoad();
     }
 
-    /** 初始化RV */
+    /** 初始化RV -- 用于直接继承BaseFragment初始化 */
     protected void initRecyclerView() {}
 
     /** 重新构造新的数据后调用的方法，每个界面都有，都抽取到父类*/

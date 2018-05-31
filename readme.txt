@@ -65,6 +65,8 @@ Home(P)  .... GameCenter    Home(P)....Live(P)                HomeP ... GameCent
     2.如何避免嵌套
   e.Region界面
     1."data": [] -- 构建数据返回的时候利用List<Region>
+  g.VideoDetail界面
+    1.
 
 
 
@@ -73,5 +75,11 @@ Home(P)  .... GameCenter    Home(P)....Live(P)                HomeP ... GameCent
   小技巧：
     1.如何让包有层次显示 -- 找到项目中的设置图标，去掉 ”compact empty middle package“前面勾
     2.GsonFormat -- AS中增加 -- Alt + S
+
+
+  微技巧：
+    1.8.0的适配，不然手机会默认显圆形
+    2.GlideLine学习 --
+
 
 

@@ -2,14 +2,19 @@ package com.seaword.cn.network.helper;
 
 import android.content.Context;
 
+import com.seaword.cn.network.support.ApiConstants;
 import com.seaword.cn.utils.AppUtils;
 import com.seaword.cn.utils.FileUtils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
@@ -55,6 +60,7 @@ public class OkHttpHelper {
                 .retryOnConnectionFailure(true) // 失败重发
                 //http数据log，日志中打印出HTTP请求&响应数据
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(new UserAgentInterceptor())
                 .build();
     }
 
@@ -66,6 +72,23 @@ public class OkHttpHelper {
         File cacheDir = new File(baseDir,"CopyCache");////通过文件 + 字符串构造文件
         cache = new Cache(cacheDir,HTTP_RESPONSE_DISK_CACHE_MAX_SIZE);
         return cache;
+    }
+
+
+    /**
+     * 添加UA拦截器，B站请求API需要加上UA才能正常使用
+     */
+    private static class UserAgentInterceptor implements Interceptor {
+
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request originalRequest = chain.request();
+            Request requestWithUserAgent = originalRequest.newBuilder()
+                    .removeHeader("User-Agent")
+                    .addHeader("User-Agent", ApiConstants.COMMON_UA_STR)
+                    .build();
+            return chain.proceed(requestWithUserAgent);
+        }
     }
 
 }

@@ -26,6 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!-- 视频详情界面 -->
+        <activity android:name=".module.app.video.VideoDetailActivity">
+        </activity>
     </application>
 
 </manifest>

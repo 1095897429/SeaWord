@@ -2,12 +2,14 @@ package com.seaword.cn.network;
 
 import com.seaword.cn.bean.app.Splash;
 import com.seaword.cn.bean.app.video.VideoDetail;
+import com.seaword.cn.bean.app.video.VideoDetailComment;
 import com.seaword.cn.bean.chase.ChaseBangumi;
 import com.seaword.cn.bean.chase.RecommendBangumi;
 import com.seaword.cn.bean.live.LivePartition;
 import com.seaword.cn.bean.live.LiveRecommend;
 import com.seaword.cn.bean.recommend.Recommend;
 import com.seaword.cn.bean.region.Region;
+import com.seaword.cn.network.api.ApiService;
 import com.seaword.cn.network.api.AppService;
 import com.seaword.cn.network.api.BangumiService;
 import com.seaword.cn.network.api.LiveService;
@@ -26,11 +28,13 @@ public class RetrofitHelper {
     private AppService mAppService;
     private LiveService mLiveService;
     private BangumiService mBangumiService;
+    private ApiService mApiService;
 
-    public RetrofitHelper(AppService mAppService,LiveService mLiveService,BangumiService mBangumiService){
+    public RetrofitHelper(AppService mAppService,LiveService mLiveService,BangumiService mBangumiService,ApiService mApiService){
         this.mAppService = mAppService;
         this.mLiveService = mLiveService;
         this.mBangumiService = mBangumiService;
+        this.mApiService = mApiService;
     }
 
   /** 提供方法，内部是不同的service对应的方法 */
@@ -65,4 +69,12 @@ public class RetrofitHelper {
         return mAppService.getRegion();
     }
 
+    /*******************************Video****************************************/
+    public Flowable<VideoDetail> getVideoDetail(){
+        return mAppService.getVideoDetail();
+    }
+
+    public Flowable<VideoDetailComment> getVideoDetailComment() {
+        return mApiService.getVideoDetailComment();
+    }
 }

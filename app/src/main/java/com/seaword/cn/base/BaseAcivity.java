@@ -8,6 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.seaword.cn.MyApplication;
+import com.seaword.cn.di.component.ActivityComponent;
+import com.seaword.cn.di.component.DaggerActivityComponent;
+import com.seaword.cn.di.module.ActivityModule;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
@@ -18,9 +23,11 @@ import butterknife.ButterKnife;
 
 public  abstract class BaseAcivity<T extends BaseContract.BasePresenter> extends AppCompatActivity implements BaseContract.BaseView{
 
+    @Inject
+    protected T mPresenter;//某一个界面具体的P
     protected Context mContext;//某一个界面具体的上下文
     protected Toolbar mToolbar;
-    protected T mPresenter;//某一个界面具体的P
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +53,11 @@ public  abstract class BaseAcivity<T extends BaseContract.BasePresenter> extends
         }
     }
 
+    /** 完成请求 */
+    protected void finishTask() {
+    }
+
+
     /** 初始化控件 */
     protected void initWidget() {}
 
@@ -57,6 +69,20 @@ public  abstract class BaseAcivity<T extends BaseContract.BasePresenter> extends
 
     /** 注入dagger2依赖 */
     protected void initInject() {}
+
+
+    protected ActivityModule getActivityModule() {
+        return new ActivityModule(this);
+    }
+
+    protected ActivityComponent getActivityComponent() {
+        return DaggerActivityComponent.builder()
+                .appComponent(MyApplication.getInstance().getAppComponent())
+                .activityModule(getActivityModule())
+                .build();
+    }
+
+
 
     /** P 绑定 V */
     private void initPresenter() {
@@ -82,4 +108,5 @@ public  abstract class BaseAcivity<T extends BaseContract.BasePresenter> extends
     public void showError(String msg) {
 
     }
+
 }
