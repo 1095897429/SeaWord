@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.seaword.cn"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -68,4 +68,7 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.16'
     //轮播条
     compile 'com.youth.banner:banner:1.4.9'
+
+    //GSYVideoPlayer
+    compile 'com.shuyu:GSYVideoPlayer:5.0.0-beta'
 }

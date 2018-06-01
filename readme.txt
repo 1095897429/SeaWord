@@ -66,7 +66,6 @@ Home(P)  .... GameCenter    Home(P)....Live(P)                HomeP ... GameCent
   e.Region界面
     1."data": [] -- 构建数据返回的时候利用List<Region>
   g.VideoDetail界面
-    1.
 
 
 

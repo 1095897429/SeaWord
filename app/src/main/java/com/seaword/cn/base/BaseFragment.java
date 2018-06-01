@@ -36,6 +36,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     protected boolean isVisible;  //标志位 fragment是否可见
     protected boolean isPrepared;// 标志位 标志已经控件初始化完成
     protected Activity mActivity;
+    protected Context mContext;
     protected View mRootView;
     private Unbinder mUnbinder;
     public ConstraintLayout mError;
@@ -81,6 +82,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     public void onAttach(Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
+        mContext = context;
     }
 
     @Nullable

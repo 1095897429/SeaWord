@@ -76,7 +76,7 @@ public class RecommendFragment extends BaseRefreshFragment<RecommendPresenter,Mu
     @Override
     public void showRecommend(List<Recommend> recommends) {
         for (Recommend recommend: recommends) {
-            /** 注意下添加的顺序，后面添加的时候type是2,代表有2种布局*/
+            /** 注意下添加的顺序，后面添加的时候type是2,代表有2种布局,可以大于2*/
             if(!EmptyUtils.isEmpty(recommend.getBanner_item())){
                 mList.add(new MulRecommend(MulRecommend.TYPR_HEADER,MulRecommend.HEADER_SPAN_SIZE,recommend.getBanner_item()));
             }else{

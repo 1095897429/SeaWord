@@ -16,6 +16,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import io.reactivex.annotations.Nullable;
+import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * Created by zl on 2018/5/24.
@@ -43,7 +44,14 @@ public class VideoDetailActivity extends BaseRegionActivity<VideoDetailPresenter
     @Override
     protected void initDatas() {
         mPresenter.getVideoDetailData();
+        initPlayer();
     }
+
+    private void initPlayer() {
+        //初始化播放器
+    }
+
+
 
     /** 复写父类方法*/
     @Override
@@ -55,7 +63,7 @@ public class VideoDetailActivity extends BaseRegionActivity<VideoDetailPresenter
     @Override
     protected void initFragment() {
         mFragments.add(SummaryFragment.newInstance());
-        mFragments.add(SummaryFragment.newInstance());
+        mFragments.add(CommentFragment.newInstance());
     }
 
 
