@@ -18,9 +18,18 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.seaword.cn", appContext.getPackageName());
+      format(16050 +"");
     }
+
+    public static String format   (String num) {
+        Integer integer = Integer.valueOf(num);
+        if (integer < 10000) {
+            return String.valueOf(num);
+        }
+        String unit = "万";
+        double newNum = integer / 10000.0;
+        String numStr = String.format("%." + 1 + "f", newNum);
+        return numStr + unit;
+    }
+
 }

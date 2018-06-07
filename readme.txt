@@ -66,7 +66,12 @@ Home(P)  .... GameCenter    Home(P)....Live(P)                HomeP ... GameCent
   e.Region界面
     1."data": [] -- 构建数据返回的时候利用List<Region>
   g.VideoDetail界面
-
+  h.ViewPlayer界面
+    1.引入ijkplayer编译支持的 -- https://www.jianshu.com/p/c5d972ab0309
+    2.成功导入，不过定制的视频播放界面不好，只能简单播放视频，对于视频播放的控制、全屏等操作，还要自己动手做
+    3.
+===================================
+1.从gamecenter后的界面先完成，不用不熟悉的控件
 
 
 
