@@ -5,51 +5,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="226dp"
-        android:background="@color/window_background"
-        android:gravity="center">
 
-        <ImageView
-            android:id="@+id/iv_video_preview"
+        <com.zl.playerview.media.IjkPlayerView
+            android:id="@+id/player_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:scaleType="center"/>
-
-
-        <!-- 简单的视频播放 -->
-        <com.seaword.cn.ijkplayer.simpledemo.VideoPlayerIJK
-            android:id="@+id/ijk_player"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="226dp"/>
-
-        <!-- 自定义的视频播放 1.toolbar 2.ijkplayer -->
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-
-        <com.seaword.cn.ijkplayer.definedemo.media.IjkVideoView
-            android:id="@+id/ijk_player2"
-            android:layout_width="match_parent"
-            android:layout_height="226dp"/>
-
-        <TableLayout
-            android:id="@+id/hud_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
-            android:padding="8dp" />
-
-
-    </FrameLayout>
+            android:layout_height="200dp"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab"

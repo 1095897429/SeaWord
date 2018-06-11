@@ -1,10 +1,16 @@
 package com.seaword.cn.module.app.video;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TableLayout;
 
 import com.bumptech.glide.Glide;
@@ -13,12 +19,11 @@ import com.seaword.cn.R;
 import com.seaword.cn.bean.app.video.VideoDetail;
 import com.seaword.cn.bean.app.video.VideoDetailComment;
 import com.seaword.cn.event.Event;
-import com.seaword.cn.ijkplayer.definedemo.media.AndroidMediaController;
-import com.seaword.cn.ijkplayer.definedemo.media.IjkVideoView;
 import com.seaword.cn.module.BaseRegionActivity;
 import com.seaword.cn.mvp.contract.app.video.VideoDetailContract;
 import com.seaword.cn.mvp.presenter.app.video.VideoDetailPresenter;
 import com.socks.library.KLog;
+import com.zl.playerview.media.IjkPlayerView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -33,17 +38,12 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 public class VideoDetailActivity extends BaseRegionActivity<VideoDetailPresenter,Nullable> implements VideoDetailContract.View {
 
-    @BindView(R.id.iv_video_preview)
-    ImageView mIvVideoPreview;
-    @BindView(R.id.ijk_player2)
-    IjkVideoView ijkPlayer;
-    @BindView(R.id.hud_view)
-    TableLayout mHudView;
+    private IjkPlayerView mPlayerView;
+    //TODO 测试
+    private static final String VIDEO_URL = "http://flv2.bn.netease.com/videolib3/1611/28/GbgsL3639/SD/movie_index.m3u8";
+    private static final String VIDEO_HD_URL = "http://flv2.bn.netease.com/videolib3/1611/28/GbgsL3639/HD/movie_index.m3u8";
+    private static final String IMAGE_URL = "http://vimg2.ws.126.net/image/snapshot/2016/11/I/M/VC62HMUIM.jpg";
 
-    private String mVideoPath;
-    private Uri mVideoUri;
-    boolean mBackPressed;
-    AndroidMediaController mMediaController;
 
     private VideoDetail.DataBean mVideoDetail;
     private VideoDetailComment.DataBean mVideoDetailComment;
@@ -59,64 +59,19 @@ public class VideoDetailActivity extends BaseRegionActivity<VideoDetailPresenter
     }
 
     @Override
+    protected void initVariables() {
+        mPlayerView = (IjkPlayerView) findViewById(R.id.player_view);
+        Glide.with(this).load(IMAGE_URL).fitCenter().into(mPlayerView.mPlayerThumb);
+        mPlayerView.init()
+                .setTitle("这是不是跑马灯TextView，标题要足够长才会跑。-(゜ -゜)つロ 乾杯~")
+                .setVideoSource(null, VIDEO_URL, VIDEO_HD_URL, null, null)
+                .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_HIGH);
+    }
+
+    @Override
     protected void initDatas() {
         mPresenter.getVideoDetailData();
-        initPlayer();
     }
-
-    @Override
-    public void onBackPressed() {
-        mBackPressed = true;
-        super.onBackPressed();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        //点击返回或不允许后台播放时 释放资源
-        if (mBackPressed || !ijkPlayer.isBackgroundPlayEnabled()) {
-            ijkPlayer.stopPlayback();
-            ijkPlayer.release(true);
-            ijkPlayer.stopBackgroundPlay();
-        } else {
-            ijkPlayer.enterBackground();
-        }
-        IjkMediaPlayer.native_profileEnd();
-    }
-
-    private void initPlayer() {
-        /** 加载so文件 -- 初始化播放器 */
-        try {
-            IjkMediaPlayer.loadLibrariesOnce(null);
-            IjkMediaPlayer.native_profileBegin("libijkplayer.so");
-        } catch (Exception e) {
-            this.finish();
-        }
-
-        /** 这里使用的是Demo中提供的AndroidMediaController类控制播放相关操作 */
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);  // TODO init UI -- 不觉明历
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        mMediaController = new AndroidMediaController(this, false);
-        mMediaController.setSupportActionBar(actionBar);
-        ijkPlayer.setMediaController(mMediaController);
-        ijkPlayer.setHudView(mHudView);
-        /**  设置本地视频文件位置或服务器地址，然后播放*/
-        mVideoPath = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
-        if (mVideoPath != null)
-            ijkPlayer.setVideoPath(mVideoPath);
-        else if (mVideoUri != null)
-            ijkPlayer.setVideoURI(mVideoUri);
-        else {
-            KLog.e("tag", "Null Data Source\n");
-            finish();
-            return;
-        }
-
-        ijkPlayer.setVideoPath(mVideoPath);
-        ijkPlayer.start();
-    }
-
 
 
     /** 复写父类方法*/
@@ -146,14 +101,6 @@ public class VideoDetailActivity extends BaseRegionActivity<VideoDetailPresenter
 
     @Override
     protected void finishTask() {
-        //设置图片
-        Glide.with(mContext)
-                .load(mVideoDetail.getPic())
-                .centerCrop()
-                .placeholder(R.mipmap.bili_default_image_tv)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
-                .into(mIvVideoPreview);
         super.finishTask();
     }
 
@@ -167,15 +114,50 @@ public class VideoDetailActivity extends BaseRegionActivity<VideoDetailPresenter
         Event.VideoDetailCommentEvent videoDetailCommentEvent = new Event.VideoDetailCommentEvent();
         videoDetailCommentEvent.videoDetailComment = mVideoDetailComment;
         EventBus.getDefault().post(videoDetailCommentEvent);
-
-        /** 给ijkplayer设置 观察者 */
-        ijkPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPlayerView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPlayerView.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPlayerView.onDestroy();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mPlayerView.configurationChanged(newConfig);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mPlayerView.onBackPressed()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (mPlayerView.handleVolumeKey(keyCode)) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
 
 
 

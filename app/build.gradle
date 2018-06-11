@@ -69,12 +69,7 @@ dependencies {
     //轮播条
     compile 'com.youth.banner:banner:1.4.9'
 
-    compile project(':ijkplayer-java')
-    compile project(':ijkplayer-exo')
-    compile project(':ijkplayer-armv5')
-    compile project(':ijkplayer-armv7a')
-    compile project(':ijkplayer-arm64')
-    compile project(':ijkplayer-x86')
-    compile project(':ijkplayer-x86_64')
+
+    compile project(':playerview')
 
 }
