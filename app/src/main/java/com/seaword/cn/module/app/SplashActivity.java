@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -95,17 +96,9 @@ public class SplashActivity extends RxAppCompatActivity implements SplashContrac
                 });
     }
 
-    //TODO 这里等下研究
     private void loadData() {
         mPresenter.getSpalshData();
         mPresenter.setCountDown();
-        Intent intent = null;
-        try {
-            intent = Intent.parseUri("alipayqr://platformapi/startapp?saId=20000056", Intent.URI_INTENT_SCHEME );
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        startActivity(intent);
     }
 
     /** ------------------ 以下是界面展示 ------------------*/
@@ -120,8 +113,7 @@ public class SplashActivity extends RxAppCompatActivity implements SplashContrac
     @Override
     public void showSplash(Splash splash) {
         if(!splash.getData().isEmpty()){//判断list中是否有元素
-//            int pos = new Random().nextInt(splash.getData().size());//生成一个随机的int值，该值介于[0,n)的区间
-            int pos = 0;
+            int pos = new Random().nextInt(splash.getData().size());//生成一个随机的int值，该值介于[0,n)的区间
             Glide.with(this)
                     .load(splash.getData().get(pos).getThumb())
                     .centerCrop()

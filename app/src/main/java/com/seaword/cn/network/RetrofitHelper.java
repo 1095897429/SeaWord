@@ -7,12 +7,14 @@ import com.seaword.cn.bean.chase.ChaseBangumi;
 import com.seaword.cn.bean.chase.RecommendBangumi;
 import com.seaword.cn.bean.live.LivePartition;
 import com.seaword.cn.bean.live.LiveRecommend;
+import com.seaword.cn.bean.recommend.AllStationRank;
 import com.seaword.cn.bean.recommend.Recommend;
 import com.seaword.cn.bean.region.Region;
 import com.seaword.cn.network.api.ApiService;
 import com.seaword.cn.network.api.AppService;
 import com.seaword.cn.network.api.BangumiService;
 import com.seaword.cn.network.api.LiveService;
+import com.seaword.cn.network.api.RankService;
 import com.seaword.cn.network.response.HttpResponse;
 
 import java.util.List;
@@ -29,12 +31,15 @@ public class RetrofitHelper {
     private LiveService mLiveService;
     private BangumiService mBangumiService;
     private ApiService mApiService;
+    private RankService mRankService;
 
-    public RetrofitHelper(AppService mAppService,LiveService mLiveService,BangumiService mBangumiService,ApiService mApiService){
+    public RetrofitHelper(AppService mAppService,LiveService mLiveService,BangumiService mBangumiService,ApiService mApiService,
+                          RankService mRankService){
         this.mAppService = mAppService;
         this.mLiveService = mLiveService;
         this.mBangumiService = mBangumiService;
         this.mApiService = mApiService;
+        this.mRankService = mRankService;
     }
 
   /** 提供方法，内部是不同的service对应的方法 */
@@ -76,5 +81,9 @@ public class RetrofitHelper {
 
     public Flowable<VideoDetailComment> getVideoDetailComment() {
         return mApiService.getVideoDetailComment();
+    }
+    /*******************************RankApi****************************************/
+    public Flowable<AllStationRank> getAllStationRank(String type) {
+        return mRankService.getAllStationRank(type);
     }
 }

@@ -12,6 +12,7 @@ import com.seaword.cn.module.home.ChaseBangumiFragment;
 import com.seaword.cn.module.home.LiveFragment;
 import com.seaword.cn.module.home.RecommendFragment;
 import com.seaword.cn.module.home.RegionFragment;
+import com.seaword.cn.module.recommend.AllStationRankFragment;
 
 import dagger.Component;
 
@@ -27,4 +28,5 @@ public interface FragmentComponent {
     void inject(LiveFragment liveFragment);
     void inject(ChaseBangumiFragment chaseBangumiFragment);
     void inject(RegionFragment regionFragment);
+    void inject(AllStationRankFragment allStationRankFragment);
 }

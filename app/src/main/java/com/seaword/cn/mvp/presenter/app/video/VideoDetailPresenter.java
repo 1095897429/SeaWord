@@ -35,7 +35,7 @@ public class VideoDetailPresenter extends RxPresenter<VideoDetailContract.View> 
 
     @Override
     public void getVideoDetailData() {
-        /** 网络 */
+        /** 网络  如果不加这个UserAgentInterceptor拦截器，直接会返回 {"code":-3,"message":"API校验密匙错误","ttl":1} */
         addSubscribe(mRetrofitHelper.getVideoDetail()
                 .flatMap(new Function<VideoDetail, Publisher<VideoDetailComment>>() {
                     @Override

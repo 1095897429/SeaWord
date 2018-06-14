@@ -71,5 +71,5 @@ dependencies {
 
 
     compile project(':playerview')
-
+    compile project(':FlycoTabLayout_Lib')
 }

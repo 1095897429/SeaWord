@@ -25,9 +25,9 @@ public abstract class BaseSubscriber<T> extends ResourceSubscriber<T> {
 
     @Override
     public void onNext(T response) {
-        //获取到数据后，就调用view的方法来显示界面，比如将刷新的视图取消
-        mView.complete();
-       onSuccess(response);
+        if (mView == null) return;//防止空指针
+        mView.complete();   //获取到数据后，就调用view的方法来显示界面，比如将刷新的视图取消
+        onSuccess(response);
     }
 
     //后台传输过来的异常 JsonSyntaxException

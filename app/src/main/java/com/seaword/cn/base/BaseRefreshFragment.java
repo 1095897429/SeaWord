@@ -23,7 +23,7 @@ public abstract class BaseRefreshFragment<T extends BaseContract.BasePresenter,K
     protected RecyclerView mRecycler;//放在这里初始化
     protected SwipeRefreshLayout mRefresh;
     protected boolean mIsRefreshing = false;//是否手动的下拉刷新
-    protected List<K> mList = new ArrayList<>();
+    protected List<K> mList = new ArrayList<>();//RecyclerView的集合体
 
     @Override
     public void onRefresh() {

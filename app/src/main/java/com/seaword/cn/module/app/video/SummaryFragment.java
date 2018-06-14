@@ -57,7 +57,7 @@ public class SummaryFragment extends BaseFragment<BaseContract.BasePresenter> {
         super.onDestroy();
     }
 
-    /** 接收事件 重新构建新的实体MulSummary Arrays.asList方便了添加过程*/
+    /** 接收事件 重新构建新的实体MulSummary Arrays.asList方便了添加过程 -- 没有放在Presenter中*/
     @Subscribe
     public void onVideoDetailEvent(Event.VideoDetailEvent event){
         mVideoDetail = event.videoDetail;

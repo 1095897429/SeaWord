@@ -22,4 +22,9 @@ public class AppUtils {
         return mContext.getResources().getStringArray(resId);
     }
 
+    public static int getColor(int resId) {
+        return mContext.getResources().getColor(resId);
+    }
+
+
 }

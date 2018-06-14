@@ -25,43 +25,35 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll_navigation"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_drawer_home"/>
 
-                    <com.seaword.cn.widget.CircleImageView
-                        android:id="@+id/toolbar_user_avatar"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@mipmap/ic_user_yoyiyi"
-                        app:border_color="@color/white"
-                        app:border_width="1dp"
-                        android:layout_marginRight="3dp"
-                        android:layout_marginLeft="16dp"/>
+                    <ImageView
+                        android:id="@+id/iv_back"
+                        android:layout_width="56dp"
+                        android:layout_height="40dp"
+                        android:padding="10dp"
+                        android:scaleType="center"
+                        android:src="@mipmap/ic_return_back"/>
 
                     <TextView
+                        android:id="@+id/tv_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
                         android:maxLines="1"
-                        android:text="天霸动霸tua"
+                        android:text="直播"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16sp"/>
                 </LinearLayout>
 
             </android.support.v7.widget.Toolbar>
 
 
             <com.flyco.tablayout.SlidingTabLayout
-                android:id="@+id/stl_tabs"
+                android:id="@+id/sliding_tabs"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@color/colorPrimary"
@@ -70,10 +62,9 @@
                 app:tl_indicator_corner_radius="1dp"
                 app:tl_indicator_height="2dp"
                 app:tl_indicator_width="40dp"
-                app:tl_tab_space_equal="true"/>
+                app:tl_tab_space_equal="false"/>
 
         </android.support.design.widget.AppBarLayout>
-
 
 
         <android.support.v4.view.ViewPager

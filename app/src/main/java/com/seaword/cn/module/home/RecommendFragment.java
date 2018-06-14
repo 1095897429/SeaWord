@@ -1,5 +1,6 @@
 package com.seaword.cn.module.home;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -11,6 +12,7 @@ import com.seaword.cn.bean.recommend.MulRecommend;
 import com.seaword.cn.bean.recommend.Recommend;
 import com.seaword.cn.di.component.DaggerFragmentComponent;
 import com.seaword.cn.di.module.FragmentModule;
+import com.seaword.cn.module.recommend.AllStationRankActivity;
 import com.seaword.cn.mvp.contract.home.RecommendContract;
 import com.seaword.cn.mvp.presenter.home.RecommendPresenter;
 import com.seaword.cn.utils.EmptyUtils;
@@ -94,7 +96,7 @@ public class RecommendFragment extends BaseRefreshFragment<RecommendPresenter,Mu
 
     @OnClick(R.id.iv_rank)
     void onClick(){
-
+        startActivity(new Intent(getActivity(), AllStationRankActivity.class));
     }
 
 }

@@ -6,12 +6,14 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.seaword.cn.di.qualifier.AppUrl;
 import com.seaword.cn.di.qualifier.BangumiUrl;
 import com.seaword.cn.di.qualifier.LiveUrl;
+import com.seaword.cn.di.qualifier.RankUrl;
 import com.seaword.cn.di.qualifier.VideoUrl;
 import com.seaword.cn.network.RetrofitHelper;
 import com.seaword.cn.network.api.ApiService;
 import com.seaword.cn.network.api.AppService;
 import com.seaword.cn.network.api.BangumiService;
 import com.seaword.cn.network.api.LiveService;
+import com.seaword.cn.network.api.RankService;
 import com.seaword.cn.network.helper.OkHttpHelper;
 import com.seaword.cn.network.support.ApiConstants;
 
@@ -42,8 +44,9 @@ public class ApiModule {
 
     @Singleton
     @Provides
-    RetrofitHelper provideRetrofitHelper(AppService appService, LiveService liveService, BangumiService bangumiService, ApiService apiService) {
-        return new RetrofitHelper(appService,liveService,bangumiService,apiService);
+    RetrofitHelper provideRetrofitHelper(AppService appService, LiveService liveService, BangumiService bangumiService, ApiService apiService,
+                                         RankService rankService) {
+        return new RetrofitHelper(appService,liveService,bangumiService,apiService,rankService);
     }
 
     /** 直接提供 */
@@ -100,5 +103,17 @@ public class ApiModule {
     @Provides
     ApiService provideVideoService(@VideoUrl Retrofit retrofit){
         return retrofit.create(ApiService.class);
+    }
+
+    /** RankService 的retrofit */
+    @Provides
+    @RankUrl
+    Retrofit provideRankRetrofit(OkHttpClient client){
+        return createRetrofit(client,ApiConstants.RANK_BASE_URL);
+    }
+
+    @Provides
+    RankService provideRankService(@RankUrl Retrofit retrofit){
+        return retrofit.create(RankService.class);
     }
 }

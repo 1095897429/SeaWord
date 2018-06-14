@@ -1,14 +1,12 @@
 package com.seaword.cn.module.home;
 
 
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
 
+import com.flyco.tablayout.SlidingTabLayout;
 import com.seaword.cn.R;
 import com.seaword.cn.adapter.home.MainAdapter;
 import com.seaword.cn.event.Event;
@@ -25,8 +23,8 @@ import butterknife.OnClick;
 public class HomeFragment extends BaseHomeFragment {
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
-    @BindView(R.id.tab)
-    TabLayout mTabLayout;
+    @BindView(R.id.stl_tabs)
+    SlidingTabLayout mSlidingTabLayout;
 
 
     /** 通过这种形式获取Fragment */
@@ -52,7 +50,7 @@ public class HomeFragment extends BaseHomeFragment {
         mViewPager.setAdapter(adapter);
         mViewPager.setCurrentItem(1);//设置viewpager的位置
         //将tablayout和ViewPager关联起来
-        mTabLayout.setupWithViewPager(mViewPager);
+        mSlidingTabLayout.setViewPager(mViewPager);
     }
 
 

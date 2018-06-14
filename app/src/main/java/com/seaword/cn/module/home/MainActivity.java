@@ -1,7 +1,6 @@
 package com.seaword.cn.module.home;
 
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
@@ -13,7 +12,6 @@ import android.view.MenuItem;
 import com.seaword.cn.R;
 import com.seaword.cn.base.BaseAcivity;
 import com.seaword.cn.event.Event;
-import com.socks.library.KLog;
 
 
 import org.greenrobot.eventbus.EventBus;
