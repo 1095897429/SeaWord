@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import com.seaword.cn.R;
 import com.seaword.cn.base.BaseAcivity;
 import com.seaword.cn.event.Event;
+import com.seaword.cn.utils.AppUtils;
+import com.seaword.cn.widget.StatusBarUtil;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,6 +37,12 @@ public class MainActivity extends BaseAcivity implements NavigationView.OnNaviga
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initStatusBar() {
+        /** 经过测试，还需要在xml中定义fitsSystemWindows属性，不知道为啥 */
+        StatusBarUtil.setColorNoTranslucentForDrawerLayout(this, mDrawerLayout, AppUtils.getColor(R.color.colorPrimary));
     }
 
     @Override

@@ -28,4 +28,6 @@
     <color name="bili_logo_pink_color">#fb7299</color>
     <color name="item_tag_background">@color/white</color>
 
+    <color name="test">#A7D43C</color>
+
 </resources>

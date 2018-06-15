@@ -1,5 +1,6 @@
 package com.seaword.cn.adapter.app.video;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.seaword.cn.R;
 import com.seaword.cn.bean.app.video.MulSummary;
 import com.seaword.cn.bean.app.video.VideoDetail;
+import com.seaword.cn.module.app.video.VideoDetailActivity;
 import com.seaword.cn.utils.NumberUtils;
 import com.seaword.cn.utils.TimeUtils;
 import com.seaword.cn.widget.FlowLayout;
@@ -89,11 +91,20 @@ public class SummaryAdapter extends BaseMultiItemQuickAdapter<MulSummary,BaseVie
                         .setText(R.id.tv_video_up, item.relates.getOwner().getName())
                         .setText(R.id.tv_video_play, NumberUtils.format(item.relates.getStat().getView() + ""))
                         .setText(R.id.tv_video_danmaku, NumberUtils.format(item.relates.getStat().getDanmaku() + ""));
+                helper.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO 思路1：发送切换视频事件，让Activity重新切换 思路2：Bilibili是重新创建Activity
+                        mContext.startActivity(new Intent(mContext,VideoDetailActivity.class));
+                    }
+                });
+
                 break;
         }
     }
 
     private void initFlowView(final List<String> tempList, BaseViewHolder helper){
+        ((FlowLayout)helper.getView(R.id.flowlayout)).removeAllViews();//先移除所有的控件，再添加
         LayoutInflater mInflater = LayoutInflater.from(mContext);
         for (int i = 0; i < tempList.size(); i++) {
             final TextView tv = (TextView) mInflater.inflate(R.layout.layout_hot_tags_item, (FlowLayout)helper.getView(R.id.flowlayout), false);

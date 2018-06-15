@@ -12,6 +12,7 @@ import com.seaword.cn.event.Event;
 import com.seaword.cn.module.BaseRegionActivity;
 import com.seaword.cn.mvp.contract.app.video.VideoDetailContract;
 import com.seaword.cn.mvp.presenter.app.video.VideoDetailPresenter;
+import com.seaword.cn.widget.StatusBarUtil;
 import com.zl.playerview.media.IjkPlayerView;
 import org.greenrobot.eventbus.EventBus;
 import io.reactivex.annotations.Nullable;
@@ -38,6 +39,11 @@ public class VideoDetailActivity extends BaseRegionActivity<VideoDetailPresenter
     @Override
     protected int getLayoutId() {
         return R.layout.activity_video_detail1;
+    }
+
+    @Override
+    protected void initStatusBar() {
+        StatusBarUtil.transparentStatusBar(this);
     }
 
     @Override

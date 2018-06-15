@@ -86,4 +86,8 @@ Home(P)  .... GameCenter    Home(P)....Live(P)                HomeP ... GameCent
     2.GlideLine学习 --
 
 
+    =========================================================================================================
+    在AndroidStudio中的打开方式为Tools > Android > Android Device Monitor> openPerspective> Hierarchy Viewer
+
+
 

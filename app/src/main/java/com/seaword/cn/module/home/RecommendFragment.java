@@ -2,6 +2,7 @@ package com.seaword.cn.module.home;
 
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
+import android.view.LayoutInflater;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.seaword.cn.MyApplication;
@@ -63,6 +64,8 @@ public class RecommendFragment extends BaseRefreshFragment<RecommendPresenter,Mu
     @Override
     protected void initRecyclerView() {
         mAdapter = new RecommendAdapter(mList);
+        mAdapter.setEmptyView(LayoutInflater.from(mContext).inflate(R.layout.layout_empty,null));//测试Empty
+//        mAdapter.setHeaderView(LayoutInflater.from(mContext).inflate(R.layout.activity_test,null));测试头部
         GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(),2);
         //TODO onAttachedToRecyclerView中接口回调了SpanSizeLookup接口 -- 封装了一层而已，它先实现了，用它的接口即可
         mAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {

@@ -1,5 +1,6 @@
 package com.seaword.cn.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -13,6 +14,8 @@ import com.seaword.cn.R;
 import com.seaword.cn.di.component.ActivityComponent;
 import com.seaword.cn.di.component.DaggerActivityComponent;
 import com.seaword.cn.di.module.ActivityModule;
+import com.seaword.cn.utils.AppUtils;
+import com.seaword.cn.widget.StatusBarUtil;
 
 import javax.inject.Inject;
 
@@ -106,8 +109,8 @@ public  abstract class BaseAcivity<T extends BaseContract.BasePresenter> extends
     }
 
     /**初始化StatusBar*/
-    private void initStatusBar() {
-
+    protected void initStatusBar() {
+        StatusBarUtil.setColorNoTranslucent((Activity) mContext, AppUtils.getColor(R.color.colorPrimary));
     }
 
     /**设置布局*/

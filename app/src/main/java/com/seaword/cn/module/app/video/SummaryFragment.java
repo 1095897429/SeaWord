@@ -24,7 +24,6 @@ import butterknife.BindView;
 /**
  * Created by zl on 2018/5/31.
  * 适配器采用的是BaseMultiItemQuickAdapter，没有采用Section
- *
  */
 
 //TODO T 泛型还没有指定具体的
